@@ -12,11 +12,12 @@ AppBar CustomAppBar({@required title, List<Widget> actions}) => AppBar(
         ),
       ),
       toolbarHeight: 80,
-      elevation: 0.1,
+      shadowColor: Colors.red,
+      elevation: 1,
       leading: Image.asset(
         'assets/images/logo.png',
         height: 30,
       ),
-      backgroundColor: Colors.orangeAccent,
+      backgroundColor: Colors.red[900],
       actions: actions,
     );

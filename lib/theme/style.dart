@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -25,27 +27,28 @@ ThemeData CustomAppTheme() => ThemeData(
 LinearGradient LinearGradientDefault() => LinearGradient(
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
-      colors: [Colors.orangeAccent, Colors.deepOrange],
+      colors: [Colors.redAccent, Colors.red[900]],
     );
 
 Widget TextTitle(text, {padding, alignCenter}) {
-  return Padding(
-    padding: padding ?? EdgeInsets.zero,
-    child: Text(
-      text,
-      textAlign: alignCenter ? TextAlign.center : TextAlign.left,
-      style: GoogleFonts.acme(fontSize: 30),
-    ),
-  );
+  return SimpleText(text,
+      size: 30.0, padding: padding, alignCenter: alignCenter);
 }
 
-Widget TextSubtitle(text, {padding, alignCenter}) {
+Widget TextSubtitle(text, {color, padding, alignCenter}) {
+  return SimpleText(text, size: 20.0, color: color, alignCenter: alignCenter);
+}
+
+Widget SimpleText(text, {padding, color, alignCenter, @required size}) {
   return Padding(
     padding: padding ?? EdgeInsets.zero,
     child: Text(
       text,
-      textAlign: alignCenter ? TextAlign.center : TextAlign.left,
-      style: GoogleFonts.acme(fontSize: 20),
+      textAlign: alignCenter ?? false ? TextAlign.center : TextAlign.left,
+      style: GoogleFonts.fahkwang(
+          fontSize: size,
+          color: color ?? Colors.white,
+          decoration: TextDecoration.none),
     ),
   );
 }
