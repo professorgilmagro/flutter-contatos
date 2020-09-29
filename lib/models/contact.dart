@@ -1,16 +1,28 @@
-class Contact {
-  String id;
+import 'package:contact_app/models/base.dart';
+
+class Contact extends Model {
   String name;
   String email;
   String phone;
   String image;
+
+  Contact({this.name, this.email, this.phone, this.image})
+      : super.fromMap(null);
+
+  @override
+  String get tableName => 'contacts';
 
   @override
   String toString() {
     return toMap().toString();
   }
 
-  Contact.fromMap(Map map) {
+  @override
+  String getTableName() {
+    return 'contacts';
+  }
+
+  Contact.fromMap(Map map) : super.fromMap(null) {
     id = map['id'];
     name = map['name'];
     email = map['email'];

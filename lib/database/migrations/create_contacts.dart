@@ -1,6 +1,6 @@
 class CreateContactTable {
   static final String tableName = 'contacts';
-  static final Map<String, String> _columns = Map();
+  Map<String, String> _columns = Map();
 
   CreateContactTable() {
     _columns['id'] = 'INTEGER PRIMARY KEY';
@@ -15,9 +15,10 @@ class CreateContactTable {
   }
 
   static String getDDL() {
-    List<String> fields;
+    List<String> fields = List();
+    print(CreateContactTable().columns);
     String ddl = 'CREATE TABLE $tableName(';
-    _columns.forEach((column, type) {
+    CreateContactTable().columns.forEach((column, type) {
       fields.add("$column $type");
     });
 
