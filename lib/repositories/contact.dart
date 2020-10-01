@@ -17,9 +17,12 @@ class ContactRepository extends AbstractRepository {
   Future<List<Contact>> fetchAll() async {
     List<Contact> contacts = List();
     List items = await all();
-    items.forEach((data) {
-      contacts.add(Contact.fromMap(data));
-    });
+
+    if(items != null) {
+      items.forEach((data) {
+        contacts.add(Contact.fromMap(data));
+      });
+    }
 
     return contacts;
   }

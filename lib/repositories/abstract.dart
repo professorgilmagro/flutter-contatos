@@ -42,24 +42,27 @@ class AbstractRepository {
 
   Future<List<Map>> findById(int id) async {
     return await query(
-      columns: ["*"],
       where: "id = ?",
       args: [id],
     );
   }
 
   Future<List<Map>> all() async {
-    await (await db).rawQuery("SELECT * FROM ${model.tableName}");
+    return await (await db).rawQuery("SELECT * FROM ${model.tableName}");
   }
 
   Future<int> count() async {
-    await (await db).rawQuery("SELECT COUNT(*) FROM ${model.tableName}");
+    List<Map<String, dynamic>> result = await (await db).rawQuery("SELECT COUNT(*) as total FROM ${model.tableName}");
+    if(result == null || result.isEmpty) {
+      return 0;
+    }
+    return result.first['total'];
   }
 
-  Future<List<Map>> query({List columns, String where, List args}) async {
+  Future<List> query({List columns, String where, List args}) async {
     return await (await db).query(
       model.tableName,
-      columns: columns ?? ["*"],
+      columns: columns,
       where: where,
       whereArgs: args,
     );

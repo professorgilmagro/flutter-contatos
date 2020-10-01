@@ -16,7 +16,7 @@ class CreateContactTable {
 
   static String getDDL() {
     List<String> fields = List();
-    print(CreateContactTable().columns);
+
     String ddl = 'CREATE TABLE $tableName(';
     CreateContactTable().columns.forEach((column, type) {
       fields.add("$column $type");

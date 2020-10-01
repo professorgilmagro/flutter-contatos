@@ -21,7 +21,7 @@ class DbConnection {
   _initDb() async {
     final dbPath = await getDatabasesPath();
     final path = join(dbPath, 'easy_contacts.db');
-    print(path);
+
     return await openDatabase(path, version: 1,
         onCreate: (Database db, int newVersion) async {
       await db.execute(CreateContactTable.getDDL());
