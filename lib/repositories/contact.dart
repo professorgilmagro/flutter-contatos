@@ -4,6 +4,10 @@ import 'package:contact_app/repositories/abstract.dart';
 class ContactRepository extends AbstractRepository {
   ContactRepository(Contact model) : super(model);
 
+  factory ContactRepository.make() {
+    return ContactRepository(Contact());
+  }
+
   Future<Contact> find(int id) async {
     List<Map> result = await this.findById(id);
 

@@ -45,7 +45,8 @@ Widget SimpleText(text, {padding, color, alignCenter, @required size}) {
     child: Text(
       text,
       textAlign: alignCenter ?? false ? TextAlign.center : TextAlign.left,
-      style: GoogleFonts.fahkwang(
+      style: GoogleFonts.abel(
+          fontWeight: FontWeight.bold,
           fontSize: size,
           color: color ?? Colors.white,
           decoration: TextDecoration.none),
