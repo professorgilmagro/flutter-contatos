@@ -4,16 +4,23 @@ import 'package:contact_app/models/contact.dart';
 import 'package:contact_app/theme/style.dart';
 import 'package:flutter/material.dart';
 
-Widget ItemCard({Contact contact, EdgeInsetsGeometry padding, Function onTap}) {
+Widget ItemCard(
+    {Contact contact,
+    EdgeInsetsGeometry padding,
+    Function onCardTap,
+    Function onAvatarLongPress}) {
   return GestureDetector(
-    onTap: onTap,
+    onTap: onCardTap,
     child: Card(
       elevation: 10,
       child: Padding(
         padding: padding,
         child: Column(
           children: [
-            TitleRow(name: contact.name, image: contact.name),
+            TitleRow(
+                name: contact.name,
+                image: contact.image,
+                onAvatarLongPress: onAvatarLongPress),
             Divider(),
             EmailRow(contact.email),
             PhoneRow(contact.phone),
@@ -24,10 +31,10 @@ Widget ItemCard({Contact contact, EdgeInsetsGeometry padding, Function onTap}) {
   );
 }
 
-Row TitleRow({String name, String image}) {
+Row TitleRow({String name, String image, Function onAvatarLongPress}) {
   return Row(
     children: [
-      AvatarFile(imageFile: image),
+      Avatar(imageFile: image, onAvatarLongPress: onAvatarLongPress),
       SimpleText(
         name,
         padding: EdgeInsets.only(left: 10),
@@ -38,19 +45,22 @@ Row TitleRow({String name, String image}) {
   );
 }
 
-Widget AvatarFile({String imageFile}) {
-  if (imageFile == null) {
-    return CircleAvatar(
-      backgroundColor: Colors.red,
-      child: Icon(
-        Icons.person,
-        color: Colors.white,
-      ),
-    );
+Widget Avatar({String imageFile, Function onAvatarLongPress}) {
+  dynamic image = AssetImage('assets/images/photo_default.png');
+  if (imageFile != null && imageFile.isNotEmpty) {
+    image = FileImage(File(imageFile));
   }
-  return Image.file(
-    File(imageFile),
-    color: Colors.red,
+
+  return GestureDetector(
+    onLongPress: onAvatarLongPress,
+    child: Container(
+      height: 80,
+      width: 80,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        image: DecorationImage(image: image, fit: BoxFit.cover),
+      ),
+    ),
   );
 }
 
