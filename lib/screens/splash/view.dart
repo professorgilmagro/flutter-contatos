@@ -1,4 +1,4 @@
-import 'package:contact_app/screens/home/home.dart';
+import 'package:contact_app/screens/contact/list.dart';
 import 'package:contact_app/theme/style.dart';
 import 'package:flutter/material.dart';
 import 'package:splashscreen/splashscreen.dart';
@@ -25,7 +25,7 @@ Widget _introScreen() {
           end: Alignment.bottomLeft,
           colors: [Colors.redAccent, Colors.red[900]],
         ),
-        navigateAfterSeconds: Home(),
+        navigateAfterSeconds: ContactList(),
         loaderColor: Colors.transparent,
       ),
       Container(

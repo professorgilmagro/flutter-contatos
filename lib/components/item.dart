@@ -8,10 +8,12 @@ Widget ItemCard(
     {Contact contact,
     EdgeInsetsGeometry padding,
     Function onCardTap,
+    Function onAvatarTap,
     Function onAvatarLongPress}) {
   return GestureDetector(
     onTap: onCardTap,
     child: Card(
+      color: Colors.white,
       elevation: 10,
       child: Padding(
         padding: padding,
@@ -20,7 +22,8 @@ Widget ItemCard(
             TitleRow(
                 name: contact.name,
                 image: contact.image,
-                onAvatarLongPress: onAvatarLongPress),
+                onAvatarLongPress: onAvatarLongPress,
+                onAvatarTap: onAvatarTap),
             Divider(),
             EmailRow(contact.email),
             PhoneRow(contact.phone),
@@ -31,10 +34,17 @@ Widget ItemCard(
   );
 }
 
-Row TitleRow({String name, String image, Function onAvatarLongPress}) {
+Row TitleRow(
+    {String name,
+    String image,
+    Function onAvatarLongPress,
+    Function onAvatarTap}) {
   return Row(
     children: [
-      Avatar(imageFile: image, onAvatarLongPress: onAvatarLongPress),
+      Avatar(
+          imageFile: image,
+          onAvatarLongPress: onAvatarLongPress,
+          onAvatarTap: onAvatarTap),
       SimpleText(
         name,
         padding: EdgeInsets.only(left: 10),
@@ -45,19 +55,34 @@ Row TitleRow({String name, String image, Function onAvatarLongPress}) {
   );
 }
 
-Widget Avatar({String imageFile, Function onAvatarLongPress}) {
+Widget Avatar(
+    {String imageFile,
+    double size,
+    Function onAvatarLongPress,
+    Function onAvatarTap,
+    bool invertColor}) {
   dynamic image = AssetImage('assets/images/photo_default.png');
+
   if (imageFile != null && imageFile.isNotEmpty) {
     image = FileImage(File(imageFile));
   }
 
   return GestureDetector(
+    onTap: onAvatarTap,
     onLongPress: onAvatarLongPress,
     child: Container(
-      height: 80,
-      width: 80,
+      height: size ?? 80,
+      width: size ?? 80,
       decoration: BoxDecoration(
+        color: Colors.white,
         shape: BoxShape.circle,
+        boxShadow: [
+          BoxShadow(
+              color: Colors.white,
+              blurRadius: 10.0,
+              spreadRadius: 4.0,
+              offset: Offset(1.0, 1.0))
+        ],
         image: DecorationImage(image: image, fit: BoxFit.cover),
       ),
     ),

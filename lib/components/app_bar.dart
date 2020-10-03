@@ -22,9 +22,16 @@ AppBar CustomAppBar({@required title, List<Widget> actions}) => AppBar(
       actions: actions,
     );
 
-FloatingActionButton FloatingAddButtonAction({Function onPressed}) => FloatingActionButton(
-  onPressed: onPressed,
-  child: Icon(Icons.add, color: Colors.white,),
-  backgroundColor: Colors.red,
-  elevation: 0.5,
-);
+FloatingActionButton FloatingAddButtonAction({
+  Function onPressed,
+  IconData iconData,
+}) =>
+    FloatingActionButton(
+      onPressed: onPressed,
+      child: Icon(
+        iconData,
+        color: Colors.white,
+      ),
+      backgroundColor: Colors.red,
+      elevation: 0.5,
+    );

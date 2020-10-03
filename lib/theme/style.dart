@@ -5,9 +5,9 @@ import 'package:google_fonts/google_fonts.dart';
 
 ThemeData CustomAppTheme() => ThemeData(
       brightness: Brightness.light,
-      primaryColor: Colors.orange,
-      accentColor: Colors.orangeAccent,
-      hintColor: Colors.white,
+      primaryColor: Colors.white,
+      accentColor: Colors.yellow,
+      hintColor: Colors.red[100],
       textTheme: TextTheme(
         headline1: GoogleFonts.pompiere(
             fontSize: 72.0,
@@ -39,7 +39,7 @@ Widget TextSubtitle(text, {color, padding, alignCenter}) {
   return SimpleText(text, size: 20.0, color: color, alignCenter: alignCenter);
 }
 
-Widget SimpleText(text, {padding, color, alignCenter, @required size}) {
+Widget SimpleText(text, {padding, color, alignCenter, @required double size}) {
   return Padding(
     padding: padding ?? EdgeInsets.zero,
     child: Text(
