@@ -15,13 +15,13 @@ Widget Alert(
       context: context,
       builder: (context) {
         return AlertDialog(
-          backgroundColor: Colors.red[500],
+          backgroundColor: Colors.red[800],
           title: Row(
             children: [
               Icon(
-                titleIconData ?? Icons.error,
+                titleIconData ?? Icons.warning,
                 color: Colors.white,
-                size: 30,
+                size: 40,
               ),
               SimpleText(title,
                   size: 20,
@@ -29,7 +29,7 @@ Widget Alert(
                   padding: EdgeInsets.only(left: 5)),
             ],
           ),
-          content: SimpleText(message, color: Colors.black87),
+          content: SimpleText(message, color: Colors.yellow),
           actions: [
             FlatButton(
               child: Text(
