@@ -1,6 +1,6 @@
-import 'package:contact_app/components/item.dart';
 import 'package:contact_app/helpers/validator.dart';
 import 'package:contact_app/models/contact.dart';
+import 'package:contact_app/screens/contact/list/item.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

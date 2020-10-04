@@ -1,4 +1,4 @@
-import 'package:contact_app/screens/contact/list.dart';
+import 'package:contact_app/screens/contact/list/list.dart';
 import 'package:contact_app/theme/style.dart';
 import 'package:flutter/material.dart';
 import 'package:splashscreen/splashscreen.dart';

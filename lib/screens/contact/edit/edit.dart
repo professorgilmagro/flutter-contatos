@@ -1,7 +1,7 @@
 import 'package:contact_app/components/app_bar.dart';
 import 'package:contact_app/events/edit.dart';
 import 'package:contact_app/models/contact.dart';
-import 'package:contact_app/screens/contact/form.dart';
+import 'package:contact_app/screens/contact/edit/form.dart';
 import 'package:contact_app/theme/style.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';

@@ -1,13 +1,14 @@
 import 'package:contact_app/components/app_bar.dart';
-import 'package:contact_app/components/item.dart';
 import 'package:contact_app/events/list.dart';
-import 'package:contact_app/screens/contact/edit.dart';
+import 'package:contact_app/screens/contact/list/item.dart';
 import 'package:contact_app/theme/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import '../../models/contact.dart';
-import '../../repositories/contact.dart';
+import '../../../models/contact.dart';
+import '../../../repositories/contact.dart';
+
+enum OrderByOptions { AZ, ZA }
 
 class ContactList extends StatefulWidget {
   @override
@@ -32,12 +33,7 @@ class _ContactListState extends State<ContactList> {
         floatingActionButton: FloatingAddButtonAction(
           iconData: Icons.add,
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => EditContact(Contact()),
-              ),
-            );
+            _events.goToEditScreen(Contact());
           },
         ),
         body: Container(
@@ -48,12 +44,16 @@ class _ContactListState extends State<ContactList> {
               padding: EdgeInsets.all(10),
               itemCount: _events.items.length,
               itemBuilder: (context, index) {
+                _events.context = context;
                 Contact contact = _events.items[index];
                 return ItemCard(
                   contact: contact,
                   padding: EdgeInsets.all(10),
                   onAvatarLongPress: () => _events.changeAvatar(contact),
-                  onCardTap: () => _events.showOptions(contact),
+                  onCardTap: () => _events.showOptions(
+                    contact: contact,
+                    index: index,
+                  ),
                 );
               }),
         ));

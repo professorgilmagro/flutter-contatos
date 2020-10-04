@@ -14,7 +14,7 @@ Widget ItemCard(
     onTap: onCardTap,
     child: Card(
       color: Colors.white,
-      elevation: 10,
+      elevation: 5,
       child: Padding(
         padding: padding,
         child: Column(

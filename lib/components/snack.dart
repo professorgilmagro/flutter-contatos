@@ -9,13 +9,17 @@ class SnackMessage {
   bool undoAction = false;
   int seconds;
 
-  SnackMessage(this.context, this.description, {this.barAction, this.seconds});
+  SnackMessage(
+      {@required this.context,
+      @required this.description,
+      this.barAction,
+      this.seconds});
 
   SnackBar get snack {
     return SnackBar(
         duration: Duration(seconds: seconds ?? 4),
         content: content,
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: Colors.black54,
         action: barAction);
   }
 
@@ -27,9 +31,14 @@ class SnackMessage {
     return Text(description, style: TextStyle(color: Colors.white));
   }
 
-  void showUndoMessage(Function onUndoPressed,
-      {String label, String textPrefix, String textSuffix}) {
+  void showUndoMessage(
+      {@required Function onUndoPressed,
+      String label,
+      String textPrefix,
+      String textSuffix}) {
     undoAction = true;
+    this.textSuffix = textSuffix;
+    this.textPrefix = textPrefix;
     barAction = barAction ??
         SnackBarAction(
           label: label ?? "Desfazer",
@@ -42,14 +51,14 @@ class SnackMessage {
   Widget get undoText {
     return RichText(
       text: TextSpan(
-        text: '${textPrefix ?? "Tarefa"} ',
+        text: '${textPrefix ?? "Item"} ',
         style: TextStyle(color: Colors.white),
         children: <TextSpan>[
           TextSpan(
             text: description,
             style: TextStyle(fontStyle: FontStyle.italic, color: Colors.amber),
           ),
-          TextSpan(text: ' ${textSuffix ?? "removida!"}'),
+          TextSpan(text: ' ${textSuffix ?? "removido!"}'),
         ],
       ),
     );
