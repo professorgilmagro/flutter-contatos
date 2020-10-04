@@ -16,16 +16,13 @@ class ContactList extends StatefulWidget {
 
 class _ContactListState extends State<ContactList> {
   ContactRepository _repository = ContactRepository.make();
-  List<Contact> items = List();
   ListEvents _events;
 
   @override
   void initState() {
     super.initState();
     _events = ListEvents(state: this, contact: Contact());
-    _repository.fetchAll().then((all) {
-      setState(() => {items = all});
-    });
+    _events.loadContactFomStorage();
   }
 
   @override
@@ -49,20 +46,14 @@ class _ContactListState extends State<ContactList> {
           ),
           child: ListView.builder(
               padding: EdgeInsets.all(10),
-              itemCount: items.length,
+              itemCount: _events.items.length,
               itemBuilder: (context, index) {
-                Contact contact = items[index];
+                Contact contact = _events.items[index];
                 return ItemCard(
                   contact: contact,
                   padding: EdgeInsets.all(10),
-                  onAvatarLongPress: () {
-                    _events.changeAvatar(contact, onChanged: () {
-                      setState(() {
-                        _repository.fetchAll().then((all) => {items = all});
-                      });
-                    });
-                  },
-                  onCardTap: () => _events.goToEditScreen(contact),
+                  onAvatarLongPress: () => _events.changeAvatar(contact),
+                  onCardTap: () => _events.showOptions(contact),
                 );
               }),
         ));
