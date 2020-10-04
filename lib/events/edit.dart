@@ -28,7 +28,7 @@ class EditEvents {
 
   changeAvatar() {
     _picker.getImage(source: ImageSource.gallery).then((file) {
-      if (file.path != null) {
+      if (file != null && file.path.isNotEmpty) {
         makeAsChanged();
         state.setState(() {
           contact.image = file.path;
@@ -61,7 +61,7 @@ class EditEvents {
     if (!_wasChanged) {
       return Future.value(true);
     }
-    
+
     Alert(
       title: 'Descartar alterações?',
       message: 'Ao sair todas as alterações serão perdidas!',

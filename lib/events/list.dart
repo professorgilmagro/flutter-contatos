@@ -48,7 +48,7 @@ class ListEvents {
 
   changeAvatar(Contact item) {
     _picker.getImage(source: ImageSource.gallery).then((file) {
-      if (file.path != null) {
+      if (file != null && file.path.isNotEmpty) {
         item.image = file.path;
         ContactRepository(item).save().then((value) {
           loadContactFomStorage();

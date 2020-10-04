@@ -21,6 +21,7 @@ Widget ContactForm({
   FocusNode nameFocus = FocusNode();
   FocusNode emailFocus = FocusNode();
   FocusNode phoneFocus = FocusNode();
+
   return Padding(
     padding: EdgeInsets.all(20),
     child: Form(
@@ -57,8 +58,6 @@ Widget ContactForm({
               validator: (text) => ContactValidator.validation(
                     value: text,
                     fieldName: 'email',
-                    context: context,
-                    focusNode: emailFocus,
                   ),
               padding: EdgeInsets.only(top: 20)),
           ContactText(
@@ -71,8 +70,6 @@ Widget ContactForm({
               validator: (text) => ContactValidator.validation(
                     value: text,
                     fieldName: 'phone',
-                    context: context,
-                    focusNode: phoneFocus,
                   ),
               padding: EdgeInsets.only(top: 20)),
         ],
