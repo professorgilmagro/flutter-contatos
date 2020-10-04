@@ -2,7 +2,9 @@ import 'package:contact_app/helpers/validator.dart';
 import 'package:contact_app/models/contact.dart';
 import 'package:contact_app/screens/contact/list/item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 Widget ContactForm({
   Contact contact,
@@ -21,7 +23,12 @@ Widget ContactForm({
   FocusNode nameFocus = FocusNode();
   FocusNode emailFocus = FocusNode();
   FocusNode phoneFocus = FocusNode();
-
+  final maskPhoneFormatter = MaskTextInputFormatter(
+    mask: '(##) #####-####',
+    filter: {
+      "#": RegExp(r'[0-9]'),
+    },
+  );
   return Padding(
     padding: EdgeInsets.all(20),
     child: Form(
@@ -63,6 +70,7 @@ Widget ContactForm({
           ContactText(
               controller: phoneController,
               focusNode: phoneFocus,
+              inputFormatters: [maskPhoneFormatter],
               label: 'Telefone',
               iconData: Icons.phone,
               onInputChanged: onChangePhone,
@@ -86,6 +94,7 @@ Widget ContactText(
     TextInputType keyboardType,
     Function validator,
     IconData iconData,
+    List<TextInputFormatter> inputFormatters,
     FocusNode focusNode,
     Function onInputChanged}) {
   return Padding(
@@ -93,6 +102,7 @@ Widget ContactText(
     child: TextFormField(
       validator: validator,
       focusNode: focusNode,
+      inputFormatters: inputFormatters,
       controller: controller,
       keyboardType: keyboardType,
       style: GoogleFonts.abel(color: Colors.white, fontSize: 22),

@@ -1,3 +1,4 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 
 class ContactValidator {
@@ -51,12 +52,20 @@ class ContactValidator {
   }
 
   _checkEmail() {
-    message = 'Email é obrigatório';
-    return value.isEmpty ? message : null;
+    if (value.isEmpty) {
+      return 'Email é obrigatório';
+    }
+
+    if (!EmailValidator.validate(value)) {
+      return 'E-mail inválido!';
+    }
   }
 
   _checkPhone() {
-    message = 'Telefone é obrigatório';
-    return value.isEmpty ? message : null;
+    if (value.isEmpty) {
+      return 'Telefone é obrigatório';
+    }
+
+    return null;
   }
 }
