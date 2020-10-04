@@ -1,16 +1,40 @@
 # Easy Contacts
 
-Gerenciamento de contatos
+Aplicativo para cadastro e gerenciamento simples e rápido de contatos
 
-## Getting Started
+## Screenshots
 
-This project is a starting point for a Flutter application.
+![app](docs/screenshots/all.jpg)
 
-A few resources to get you started if this is your first Flutter project:
+### Features
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+ - Uso de banco de dados (sqlLite) para armazenamento dos contatos
+ - Menu Popup com opções para ordenar os items
+ - Opções de Ligar, Editar e remover com Menu Botom Sheet
+ - Acesso à câmera e galeria para obtenção da photo
+ - Formulário de edição e cadastro
+ - Alerta de alterações ao sair da tela de edição
+ - Recuso de restaurar contato deletado via Snackbar
+ - Permite acionar o telefone para iniciar uma ligação de chamada
+ - Validação de dados ao salvar
+ - Foco automático nos campos de edição
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Plugins e Widget utizados
+
+- Google Fonts
+- Splashscreen
+- SQF Lite
+- URL Launcher
+- ImagePicker
+- Snackbar
+- PopupMenuButton
+- Card
+- AlertDialog
+- FloatingAddButtonAction
+- Form with GlobalKey
+- TextFormField with FocusNode
+- TextFormField with TextEditingController
+- WillPopScope
+- SingleChildScrollView
+
+    

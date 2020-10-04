@@ -1,3 +1,4 @@
+import 'package:contact_app/components/app_bar.dart';
 import 'package:contact_app/components/snack.dart';
 import 'package:contact_app/models/contact.dart';
 import 'package:contact_app/repositories/contact.dart';
@@ -27,11 +28,29 @@ class ListEvents {
     });
   }
 
+  orderListBy(OrderByOptions order) {
+    state.setState(() {
+      order == OrderByOptions.ZA ? _orderListByDesc() : _orderListByAsc();
+    });
+  }
+
+  _orderListByAsc() {
+    items.sort((a, b) {
+      return a.name.toLowerCase().compareTo(b.name.toLowerCase());
+    });
+  }
+
+  _orderListByDesc() {
+    items.sort((a, b) {
+      return b.name.toLowerCase().compareTo(a.name.toLowerCase());
+    });
+  }
+
   changeAvatar(Contact item) {
     _picker.getImage(source: ImageSource.gallery).then((file) {
       if (file.path != null) {
-        contact.image = file.path;
-        ContactRepository(contact).save().then((value) {
+        item.image = file.path;
+        ContactRepository(item).save().then((value) {
           loadContactFomStorage();
         });
       }

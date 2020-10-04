@@ -8,8 +8,6 @@ import 'package:flutter/widgets.dart';
 import '../../../models/contact.dart';
 import '../../../repositories/contact.dart';
 
-enum OrderByOptions { AZ, ZA }
-
 class ContactList extends StatefulWidget {
   @override
   _ContactListState createState() => _ContactListState();
@@ -29,7 +27,12 @@ class _ContactListState extends State<ContactList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppBar(title: "Contatos"),
+        appBar: CustomAppBar(
+          title: "Contatos",
+          actions: [
+            PopMenuSortActions(onSelectedOrder: _events.orderListBy),
+          ],
+        ),
         floatingActionButton: FloatingAddButtonAction(
           iconData: Icons.add,
           onPressed: () {
