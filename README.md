@@ -4,7 +4,7 @@ Aplicativo para cadastro e gerenciamento simples e rápido de contatos
 
 ## Screenshots
 
-![app](docs/screenshots/all-temp.jpeg)
+![app](docs/screenshots/all.jpg)
 
 ### Features
 
